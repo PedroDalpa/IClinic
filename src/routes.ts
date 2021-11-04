@@ -8,7 +8,11 @@ routes.post("/laboratory", laboratoryController.create);
 routes.put("/laboratory/:id", laboratoryController.update);
 routes.get("/laboratory", laboratoryController.list);
 routes.delete("/laboratory/:id", laboratoryController.delete);
-routes.put("/laboratory/exams/:id", laboratoryController.connectExams);
+routes.put("/laboratory/connect-exams/:id", laboratoryController.connectExams);
+routes.put(
+  "/laboratory/disconnect-exams/:id",
+  laboratoryController.disconnectExams
+);
 routes.get("/laboratory/exam", laboratoryController.findByExamName);
 
 routes.post("/exams", examsController.create);

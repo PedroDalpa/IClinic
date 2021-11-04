@@ -2,6 +2,7 @@ import { request, Request, Response } from "express";
 import { connectExamsWithLaboratoryService } from "../services/laboratory/connectExamsWithLaboratory.service";
 import { createLaboratoryService } from "../services/laboratory/createLaboratory.service";
 import { deleteLaboratoryService } from "../services/laboratory/deleteLaboratory.service";
+import { disconnectExamsWithLaboratoryService } from "../services/laboratory/disconnectExamsWithLaboratory.service";
 import { findLaboratoriesByExamsService } from "../services/laboratory/findLaboratoriesByExams.service";
 import { listLaboratoryService } from "../services/laboratory/listLaboratory.service";
 import { updateLaboratoryService } from "../services/laboratory/updateLaboratory.service";
@@ -59,6 +60,16 @@ const laboratoryController = {
     });
 
     return response.json(laboratories);
+  },
+
+  async disconnectExams(request: Request, response: Response) {
+    const { id } = request.params;
+
+    const { examsId } = request.body;
+
+    await disconnectExamsWithLaboratoryService({ examsId, id: Number(id) });
+
+    return response.json();
   },
 };
 
