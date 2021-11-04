@@ -1,12 +1,12 @@
 import { AppError } from "../../errors/AppError";
 import { client } from "../../prisma";
 
-interface CreateExamsDTO {
+interface ICreateExamsDTO {
   name: string;
   type: string;
 }
 
-const createExamsService = async ({ name, type }: CreateExamsDTO) => {
+const createExamsService = async ({ name, type }: ICreateExamsDTO) => {
   try {
     await client.exams.create({ data: { type, name } });
   } catch (error) {

@@ -1,7 +1,7 @@
 import { AppError } from "../../errors/AppError";
 import { client } from "../../prisma";
 
-interface CreateLaboratoryDTO {
+interface ICreateLaboratoryDTO {
   name: string;
   address: string;
 }
@@ -9,7 +9,7 @@ interface CreateLaboratoryDTO {
 const createLaboratoryService = async ({
   name,
   address,
-}: CreateLaboratoryDTO) => {
+}: ICreateLaboratoryDTO) => {
   try {
     await client.laboratory.create({ data: { name, address } });
   } catch (error) {

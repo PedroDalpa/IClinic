@@ -1,4 +1,5 @@
-import { Request, Response } from "express";
+import { request, Request, Response } from "express";
+import { connectExamsWithLaboratoryService } from "../services/laboratory/connectExamsWithLaboratory.service";
 import { createLaboratoryService } from "../services/laboratory/createLaboratory.service";
 import { deleteLaboratoryService } from "../services/laboratory/deleteLaboratory.service";
 import { listLaboratoryService } from "../services/laboratory/listLaboratory.service";
@@ -37,6 +38,16 @@ const laboratoryController = {
     });
 
     return response.json(laboratory);
+  },
+
+  async connectExams(request: Request, response: Response) {
+    const { id } = request.params;
+
+    const { examsId } = request.body;
+
+    await connectExamsWithLaboratoryService({ examsId, id: Number(id) });
+
+    return response.json();
   },
 };
 
