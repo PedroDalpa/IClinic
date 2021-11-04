@@ -2,6 +2,7 @@ import { request, Request, Response } from "express";
 import { connectExamsWithLaboratoryService } from "../services/laboratory/connectExamsWithLaboratory.service";
 import { createLaboratoryService } from "../services/laboratory/createLaboratory.service";
 import { deleteLaboratoryService } from "../services/laboratory/deleteLaboratory.service";
+import { findLaboratoriesByExamsService } from "../services/laboratory/findLaboratoriesByExams.service";
 import { listLaboratoryService } from "../services/laboratory/listLaboratory.service";
 import { updateLaboratoryService } from "../services/laboratory/updateLaboratory.service";
 
@@ -48,6 +49,16 @@ const laboratoryController = {
     await connectExamsWithLaboratoryService({ examsId, id: Number(id) });
 
     return response.json();
+  },
+
+  async findByExamName(request: Request, response: Response) {
+    const { name } = request.query;
+
+    const laboratories = await findLaboratoriesByExamsService({
+      name: name as string,
+    });
+
+    return response.json(laboratories);
   },
 };
 

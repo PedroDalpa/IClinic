@@ -9,6 +9,7 @@ routes.put("/laboratory/:id", laboratoryController.update);
 routes.get("/laboratory", laboratoryController.list);
 routes.delete("/laboratory/:id", laboratoryController.delete);
 routes.put("/laboratory/exams/:id", laboratoryController.connectExams);
+routes.get("/laboratory/exam", laboratoryController.findByExamName);
 
 routes.post("/exams", examsController.create);
 routes.put("/exams/:id", examsController.update);
