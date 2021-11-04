@@ -11,7 +11,11 @@ const createLaboratoryService = async ({
   address,
 }: ICreateLaboratoryDTO) => {
   try {
-    await client.laboratory.create({ data: { name, address } });
+    const laboratory = await client.laboratory.create({
+      data: { name, address },
+    });
+
+    return laboratory;
   } catch (error) {
     throw new AppError("Error to create laboratory", 500);
   }

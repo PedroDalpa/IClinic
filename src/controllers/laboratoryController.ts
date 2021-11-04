@@ -11,9 +11,9 @@ const laboratoryController = {
   async create(request: Request, response: Response) {
     const { name, address } = request.body;
 
-    await createLaboratoryService({ name, address });
+    const laboratory = await createLaboratoryService({ name, address });
 
-    return response.status(201).json();
+    return response.status(201).json(laboratory);
   },
   async list(request: Request, response: Response) {
     const laboratories = await listLaboratoryService();
