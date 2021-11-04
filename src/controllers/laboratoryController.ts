@@ -35,11 +35,11 @@ const laboratoryController = {
   async delete(request: Request, response: Response) {
     const { id } = request.params;
 
-    const laboratory = await deleteLaboratoryService({
+    await deleteLaboratoryService({
       id: Number(id),
     });
 
-    return response.json(laboratory);
+    return response.status(204).json();
   },
 
   async connectExams(request: Request, response: Response) {

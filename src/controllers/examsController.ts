@@ -32,11 +32,11 @@ const examsController = {
   async delete(request: Request, response: Response) {
     const { id } = request.params;
 
-    const exams = await deleteExamsService({
+    await deleteExamsService({
       id: Number(id),
     });
 
-    return response.json(exams);
+    return response.status(204).json();
   },
 };
 

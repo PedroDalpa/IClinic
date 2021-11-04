@@ -10,7 +10,14 @@ const findLaboratoriesByExamsService = async ({
 }: IFindLaboratoriesByExams) => {
   try {
     const laboratories = await client.laboratory.findMany({
-      where: { active: true, exams: { every: { name } } },
+      where: {
+        active: true,
+        exams: {
+          some: {
+            name,
+          },
+        },
+      },
     });
 
     return laboratories;
