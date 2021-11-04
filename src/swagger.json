@@ -1,0 +1,448 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "IClinic",
+    "description": "API to create, list and update laboratory and exams",
+    "version": "1.0.0",
+    "contact": {
+      "email": "pedro.dalpa@gmail.com"
+    }
+  },
+  "paths": {
+    "/laboratory": {
+      "post": {
+        "tags": [
+          "Laboratories"
+        ],
+        "summary": "Create one laboratory",
+        "description": "In this route you can create one laboratory",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/CreateLaboratoryPostBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/CreateLaboratoryResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Laboratories"
+        ],
+        "summary": "List all laboratory",
+        "description": "In this route you can list all laboratories",
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ListLaboratoriesResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/laboratory/{id}": {
+      "put": {
+        "tags": [
+          "Laboratories"
+        ],
+        "summary": "Update a Laboratories",
+        "description": "In this endpoint you can update all Laboratories infos",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Laboratory ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/CreateLaboratoryPostBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/CreateLaboratoryResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Laboratories"
+        ],
+        "summary": "Delete laboratory",
+        "description": "In this endpoint you can delete laboratory",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Laboratory ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/laboratory/connect-exams/{id}": {
+      "put": {
+        "tags": [
+          "Laboratories"
+        ],
+        "summary": "Connect exams in to laboratory",
+        "description": "In this endpoint you can connect one or more exams on the laboratory. You have to send array of exams id in the body",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Laboratory ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/PutExamsOnLaboratoryBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"            
+          }
+        }
+      }
+    },
+    "/laboratory/disconnect-exams/{id}": {
+      "put": {
+        "tags": [
+          "Laboratories"
+        ],
+        "summary": "Disconnect exams in to laboratory",
+        "description": "In this endpoint you can disconnect one or more exams on the laboratory. You have to send array of exams id in the body",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Laboratory ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/PutExamsOnLaboratoryBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"            
+          }
+        }
+      }
+    },
+    "/laboratory/exam": {
+      "get": {
+        "tags": [
+          "Laboratories"
+        ],
+        "summary": "List Laboratory filter by exam name",
+        "description": "In this endpoint you can list all laboratory to have the exam name. You have to send exam name in query param",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Exam Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ListLaboratoriesResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/exams": {
+      "post": {
+        "tags": [
+          "Exams"
+        ],
+        "summary": "Create one exam",
+        "description": "In this route you can create one exam",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/CreateExamPostBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/CreateExamResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Exams"
+        ],
+        "summary": "List all exams",
+        "description": "In this route you can list all exams",
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ListExamsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/exams/{id}": {
+      "put": {
+        "tags": [
+          "Exams"
+        ],
+        "summary": "Update a exam",
+        "description": "In this endpoint you can update all exam infos",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Exam ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/CreateExamPostBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/CreateExamResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Exams"
+        ],
+        "summary": "Delete exam",
+        "description": "In this endpoint you can delete exam",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Exam ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "CreateLaboratoryPostBody": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        }
+      }
+    },
+    "CreateLaboratoryResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number"
+        },
+        "name": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "active": {
+          "type": "boolean"
+        }
+      }
+    },
+    "ListLaboratoriesResponse": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "active": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "CreateExamPostBody": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "CreateExamResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number"
+        },
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "active": {
+          "type": "boolean"
+        }
+      }
+    },
+    "ListExamsResponse": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "active": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "PutExamsOnLaboratoryBody": {
+      "type": "object",
+      "properties": {
+        "examsId": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  }
+}
